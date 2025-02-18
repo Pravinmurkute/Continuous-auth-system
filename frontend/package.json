@@ -1,0 +1,14 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "Frontend for continuous auth system",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {
+      "start": "live-server"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  
