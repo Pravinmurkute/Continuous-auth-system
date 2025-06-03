@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa, #e9ecef);
+    color: #343a40;
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 50px;
+    border-radius: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #007bff;
+    text-transform: uppercase;
+    margin-right: auto;
+}
+
+.header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.header nav ul li {
+    margin: 0 15px;
+}
+
+.header nav ul li a {
+    text-decoration: none;
+    color: #343a40;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.header nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    margin-top: 80px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    /* background: #f8f9fa; */
+    background-color: rgb(192, 219, 219);
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    border-right: 2px solid #dee2e6;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.sidebar ul {
+    list-style: none; /* Remove bullets */
+    padding-left: 0;  /* Remove default indentation */
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px; /* Example spacing between items */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #343a40;
+    padding: 10px 15px; /* Example padding */
+    border-radius: 8px;
+    display: flex; /* Align icon and text */
+    align-items: center;
+    transition: 0.3s;
+    background: #ffffff;
+}
+
+.sidebar ul li a span:first-child { /* Style the icon span */
+    margin-right: 10px; /* Space between icon and text */
+    width: 20px; /* Give icon some space */
+    text-align: center;
+}
+
+.sidebar ul li a:hover {
+    background: #007bff;
+    color: #ffffff;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 300px;
+    padding: 40px;
+    flex: 1;
+    text-align: center;
+}
+
+/* Camera Box */
+.camera-box {
+    margin-top: 20px;
+    width: 500px;
+    height: 300px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.camera-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Status Box */
+.status-box {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: inline-block;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+/* Enter Monitoring Button */
+.monitoring-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.monitoring-btn:hover {
+    background: #0056b3;
+}

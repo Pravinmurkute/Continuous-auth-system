@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logout</title>
+    <link rel="stylesheet" href="/static/css/logout.css">
+   
+    
+  </head>
+  <body>
+    <div class="background-animation">
+        <span style="top: 10%; left: 20%; animation-duration: 8s;"></span>
+        <span style="top: 40%; left: 70%; animation-duration: 6s;"></span>
+        <span style="top: 80%; left: 30%; animation-duration: 12s;"></span>
+        <span style="top: 60%; left: 50%; animation-duration: 10s;"></span>
+    </div>
+
+    <div class="logout-container">
+        <h2>Are you sure you want to log out?</h2>
+        <div class="btn-container">
+            <button class="btn" onclick="confirmLogout()">Yes, Logout</button>
+            <button class="btn cancel-btn" onclick="cancelLogout()">No, Stay Logged In</button>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            alert("You have been logged out!");
+            window.location.href = "home.html"; // Redirect to home page after logout
+        }
+
+        function cancelLogout() {
+            alert("You are still logged in.");
+            window.location.href = "dashboard.html"; // Redirect back to the dashboard or homepage
+        }
+    </script>
+  </body>
+</html>

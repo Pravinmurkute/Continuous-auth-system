@@ -3,8 +3,8 @@ version: "3.9"
 services:
   backend:
     build:
-      context: ./backend  # ✅ Corrected build path
-      dockerfile: Dockerfile  # ✅ Explicitly specify Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     volumes:
@@ -12,7 +12,10 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql+pymysql://root:password@db/continuous_auth
+      - MYSQL_HOST=db  # ✅ Use the MySQL service name
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Pravin0606
+      - MYSQL_DATABASE=continuous_auth
 
   db:
     image: mysql:latest
@@ -21,13 +24,13 @@ services:
       MYSQL_ROOT_PASSWORD: Pravin0606
       MYSQL_DATABASE: continuous_auth
     ports:
-      - "3307:3306"  # ✅ Changed to avoid conflict with existing MySQL process
+      - "3306:3306"
 
   frontend:
     build:
-      context: ./frontend  # ✅ Corrected indentation
-      dockerfile: Dockerfile  # ✅ Explicitly specify Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app  # ✅ Fixed indentation
+      - ./frontend:/app

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+</head>
+<body>
+    <h1>Verify OTP</h1>
+    <form id="otpForm">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+        <button type="submit">Verify</button>
+    </form>
+
+    <script>
+        document.getElementById('otpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const otp = document.getElementById('otp').value;
+
+            fetch("{{ url_for('verify_otp') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ otp: otp })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    window.location.href = "/";
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

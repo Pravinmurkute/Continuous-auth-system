@@ -1,0 +1,52 @@
+<div class="sidebar">
+    <h2>Face Dashboard</h2>
+    <ul>
+        <li><a href="{{ url_for('home') }}"><span>🏠</span> Home</a></li>
+        <li><a href="{{ url_for('user_logs') }}"><span>📜</span> User Logs</a></li>
+        <li><a href="{{ url_for('settings') }}"><span>⚙</span> Settings</a></li>
+        {% if session.get('role') == 'admin' %}
+            <li><a href="{{ url_for('analytics_dashboard') }}"><span>📊</span> Analytics</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('logout') }}"><span>🚪</span> Logout</a></li>
+        <li><a href="{{ url_for('delete_user_account') }}"><span>🗑</span> Delete Account</a></li>
+        {% if session.get('role') == 'admin' %}
+        <li>
+            <a href="{{ url_for('admin_dashboard') }}">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin Panel</span>
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{{ url_for('analytics_dashboard') }}">
+                <i class="fas fa-chart-line"></i> <!-- Font Awesome icon for analytics -->
+                <span>Analytics</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('manage_monitoring_page') }}">
+                <i class="fas fa-tv"></i> Monitoring
+            </a>
+        </li>
+        <li>
+            <a href="#" id="theme-toggle-sidebar" style="cursor:pointer;">
+               <span class="theme-icon">🌙</span>
+               <span class="theme-text">Dark Mode</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<script>
+    document.getElementById('theme-toggle-sidebar').addEventListener('click', function (e) {
+        e.preventDefault();
+        fetch('/toggle_theme', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                document.body.className = data.theme; // Apply theme class to body
+                const toggleText = data.theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+                const toggleIcon = data.theme === 'dark' ? '☀️' : '🌙';
+                this.querySelector('.theme-text').textContent = toggleText;
+                this.querySelector('.theme-icon').textContent = toggleIcon;
+            });
+    });
+</script>

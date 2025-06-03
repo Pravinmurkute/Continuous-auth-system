@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - {{ user.username if user else 'User' }}</title> {# Dynamic Title #}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userprofile.css') }}"> {# Use url_for #}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+         {# Use a consistent logo path #}
+         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="App Logo">
+         <span>Face me</span> {# Or your app name #}
+      </div>
+      <ul>
+          {# Use url_for for all links #}
+          {# Assuming 'home' is the route for the landing page #}
+          <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+          {# Assuming 'dashboard' is the main logged-in view #}
+          <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+          <li><a href="{{ url_for('user_logs') }}"><i class="fas fa-file-alt"></i> User Logs</a></li>
+          <li><a href="{{ url_for('settings') }}"><i class="fas fa-cog"></i> Settings</a></li>
+          {# Assuming 'delete_user_account' is the route for deletion page #}
+          <li><a href="{{ url_for('delete_user_account') }}"><i class="fas fa-trash"></i> Delete Account</a></li>
+          <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li> {# Added Logout #}
+      </ul>
+    </aside>
+    <main class="profile-content">
+        {# Check if user data exists #}
+        {% if user %}
+        <div class="profile-card">
+            <div class="profile-header">
+                {# Placeholder avatar - replace with dynamic one if you implement uploads #}
+                <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="User Avatar" class="profile-img">
+                {# Use dynamic data passed from the route #}
+                <h2 id="profile-name">{{ user.username }}</h2>
+                <p class="email"><i class="fas fa-envelope"></i> <span id="profile-email">{{ user.email }}</span></p>
+                <p class="role"><i class="fas fa-user-tag"></i> <span id="profile-role">{{ user.role | capitalize }}</span></p> {# Capitalize role #}
+            </div>
+            <table class="profile-table">
+                 {# Use dynamic data #}
+                <tr><th>User ID:</th> <td>{{ user.user_id }}</td></tr> {# Use correct user_id key #}
+                <tr><th>Username:</th> <td>{{ user.username }}</td></tr>
+                <tr><th>Email:</th> <td id="table-email">{{ user.email }}</td></tr>
+                <tr><th>Role:</th> <td id="table-role">{{ user.role | capitalize }}</td></tr>
+                {# Add other fields if available, e.g., created_at #}
+                {# <tr><th>Member Since:</th> <td>{{ user.created_at.strftime('%Y-%m-%d') if user.created_at else 'N/A' }}</td></tr> #}
+                {# Location and Bio are not in your current schema #}
+                {# <tr><th>Location:</th> <td id="table-location">N/A</td></tr> #}
+                {# <tr><th>Bio:</th> <td id="table-bio">N/A</td></tr> #}
+            </table>
+            <div class="button-group">
+                 {# Change button to link to settings page #}
+                <a href="{{ url_for('settings') }}" class="edit-btn">Edit Profile / Settings</a>
+            </div>
+            {# Remove the client-side-only edit section #}
+            <!--
+            <div class="edit-section" id="edit-section">
+                 ... removed ...
+            </div>
+            -->
+        </div>
+        {% else %}
+            {# Show message if user data couldn't be loaded #}
+            <div class="profile-card">
+                <h2>Error</h2>
+                <p>Could not load user profile data.</p>
+                <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+            </div>
+        {% endif %}
+    </main>
+  </div>
+
+  {# Remove the JavaScript as editing is handled on settings page #}
+  <!--
+  <script>
+    // ... removed ...
+  </script>
+  -->
+</body>
+</html>

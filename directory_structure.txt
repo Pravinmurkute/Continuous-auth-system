@@ -1,0 +1,298 @@
+Folder PATH listing for volume New Volume
+Volume serial number is D62F-9EC9
+D:.
+¦   .env
+¦   .gitignore
+¦   app.js
+¦   app.py
+¦   augment_faces.py
+¦   auth.py
+¦   authorized_user.jpg
+¦   backend_script.py
+¦   camera.py
+¦   capture_image.py
+¦   combine_datasets.py
+¦   config.py
+¦   create_placeholder_image.py
+¦   database_setup.sql
+¦   detect_face.py
+¦   directory_structure.txt
+¦   docker-compose.yml
+¦   download_lfw_dataset.sh
+¦   email_config.py
+¦   face_auth.py
+¦   face_authentication.py
+¦   face_detection.py
+¦   pip
+¦   README.md
+¦   real_time_auth.py
+¦   real_time_face_auth.py
+¦   register_face.py
+¦   registration.py
+¦   requirements.txt
+¦   retrain_model.py
+¦   routes.py
+¦   save_reference_image.py
+¦   settings.py
+¦   setup_env.py
+¦   socketio_events.py
+¦   stored_face.npy
+¦   store_face.py
+¦   test.py
+¦   test_script.py
+¦   update_users_table.sql
+¦   user credentials.sql
+¦   userprofile.html
+¦   validators.py
+¦   verify_password.py
+¦   voice_authentication.py
+¦   web_app_backend.py
+¦   
++---.vscode
+¦       settings.json
+¦       
++---auth
+¦       face_detection.py
+¦       face_verification.py
+¦       init.py
+¦       voice_authentication.py
+¦       
++---backend
+¦   ¦   Dockerfile
+¦   ¦   import cv2.py
+¦   ¦   requirements.txt
+¦   ¦   
+¦   +---routes
+¦   +---utils
+¦       +---models
+¦       +---__pycache__
++---dataset
+¦   +---face_samples
+¦   ¦       WIN_20250220_12_41_34_Pro.jpg
+¦   ¦       
+¦   +---known_faces
+¦   ¦       pravin.jpg
+¦   ¦       
+¦   +---replay_samples
+¦   +---voice_samples
++---face_recognition_models
+¦   ¦   .editorconfig
+¦   ¦   .gitignore
+¦   ¦   .travis.yml
+¦   ¦   LICENSE
+¦   ¦   Makefile
+¦   ¦   MANIFEST.in
+¦   ¦   README.rst
+¦   ¦   requirements_dev.txt
+¦   ¦   setup.cfg
+¦   ¦   setup.py
+¦   ¦   
+¦   +---.github
+¦   ¦       ISSUE_TEMPLATE.md
+¦   ¦       
+¦   +---build
+¦   ¦   +---bdist.win-amd64
+¦   ¦   +---lib
+¦   ¦       +---face_recognition_models
+¦   ¦           ¦   __init__.py
+¦   ¦           ¦   
+¦   ¦           +---models
+¦   ¦                   dlib_face_recognition_resnet_model_v1.dat
+¦   ¦                   mmod_human_face_detector.dat
+¦   ¦                   shape_predictor_5_face_landmarks.dat
+¦   ¦                   shape_predictor_68_face_landmarks.dat
+¦   ¦                   
+¦   +---face_recognition_models
+¦   ¦   ¦   __init__.py
+¦   ¦   ¦   
+¦   ¦   +---models
+¦   ¦   ¦       dlib_face_recognition_resnet_model_v1.dat
+¦   ¦   ¦       mmod_human_face_detector.dat
+¦   ¦   ¦       shape_predictor_5_face_landmarks.dat
+¦   ¦   ¦       shape_predictor_68_face_landmarks.dat
+¦   ¦   ¦       
+¦   ¦   +---__pycache__
+¦   ¦           __init__.cpython-313.pyc
+¦   ¦           
+¦   +---face_recognition_models.egg-info
+¦           dependency_links.txt
+¦           not-zip-safe
+¦           PKG-INFO
+¦           SOURCES.txt
+¦           top_level.txt
+¦           
++---flask_session
+¦       019660be77c9b3d73937f1652f6a884a
+¦       0fbf5727aeae0735da5e63ed3a1a81da
+¦       1923875d428d7d29744729cb1d503bde
+¦       1a8c1c21b7bc114b3f7ba0b1296380bf
+¦       1c4154961e12c083a04c4bd03e2a5ebe
+¦       2029240f6d1128be89ddc32729463129
+¦       20dadb3ec55642d0289316bae5ee9afb
+¦       27c0c89b360a0623d4a374007e2c5b0c
+¦       28dff175a753d0a85347b56532b466ba
+¦       2bb0f5a89d05146dc38065d82c6862a2
+¦       2f989689db91b6ef02af083649067a8a
+¦       3699fc22ce4c44e450d7ffcaa5863a3d
+¦       39cb20d3594e2708518295b2f4b025fb
+¦       39f108f57804630a713f08030997a05f
+¦       3a6b4b9d6a53ca2276d004acd1ad2d7b
+¦       3baf0301488be13bbd943e6bb26044fd
+¦       3bb322ff486afc1501060911234cd7f8
+¦       3e2d3d144dc51ffaeb3fa1a3a22d3bd8
+¦       3f6b480fdecce4decb4134eccfaabeb3
+¦       414d2fdad7cf072b60b2b251b044033d
+¦       457283d488ee66ab7cdfcdc60770736a
+¦       546b1095bf3c5551f55d1c270ba6013c
+¦       582bd23eb027caa0cc0939bc9adcc427
+¦       5bb9541b71c359b843e4b4ece2818e6e
+¦       5cf2fcd7ba5750b22b87255c9ee71299
+¦       5d7fc02bd297f72ec820b6273929a578
+¦       62382dfb81fc455fdd99bbbf3ede1b8e
+¦       6410ae4ae1ce316db847967d90985171
+¦       64622e8d123bb6bf3143bdf8e7223808
+¦       64a3f4bae5c797ca364690e541ed7048
+¦       6a610beea04fb747157269141b9aa340
+¦       710533a53dba87ea5f3f2965d3203938
+¦       719a18007040d3d3ebad6915cfb23805
+¦       73d482ec51fc5c0e7a4b35c2700f3359
+¦       756ecc1c8dee0b3e57ce8b28a1305b42
+¦       790a35c1060d58ce70345c7b3778d64b
+¦       805e8e004f38165c285cbfe5632fcf09
+¦       832943188c6fd30475f571c496ceaf74
+¦       87a411309735090722272240f3eb84ca
+¦       8a67a458b72ff7e902ae3eae24d12da7
+¦       8daef8352bd838c230612206963f9545
+¦       8f40bb0ebf2973864affdd7d3981eabb
+¦       91e59e8f93e72e6dd0e3c3c6b6cef10e
+¦       943ed46a8154d568c8ba90e48f7dc4a6
+¦       95578e7bd2e9ef7058d16c59c5a59846
+¦       9e0e4c604881060c0209e55d14c7e44d
+¦       9e82b7921c9889781cf72cf20d303fcf
+¦       b630b96b26469a0628c8a6949bdc41d7
+¦       b95548dd98a704ad4bd0840ce3119e67
+¦       ca9508caa3f1e391ea26b59a2f68d9bd
+¦       cb4f62bf0bb9c2dd196413ed376b2c38
+¦       cbdcf315605b19efe9ee64944eeb679f
+¦       cc07c694e21e8f6eb7820d735c2adfa1
+¦       d0694e7c73c99193b03210639afb155b
+¦       d80337f301623858f20d1578665d4fce
+¦       d8b4e0a222cc639afea163715778197d
+¦       d97ca2954ea51867c8f27abaa319e401
+¦       dba43ba328c5f6a48aeeec5ff484de45
+¦       e7695aa57a71bd2d6499a14989d8def8
+¦       ea6d0b2942e4a0d3afa9371607198398
+¦       ea702dbda9c00fdd8c68159da0c90598
+¦       eb034bac568cd08869696299e580c806
+¦       ed0a61f1a0063dc897731b8909e99490
+¦       ed1dd4ed675879ec7857523d4ab57b5b
+¦       f7bc4b6b8c827a12bcfe3a7396565cb3
+¦       tmpp1__mwl0.__wz_cache
+¦       
++---frames
+¦       frame_0.jpg
+¦       frame_1.jpg
+¦       frame_2.jpg
+¦       frame_3.jpg
+¦       frame_4.jpg
+¦       frame_5.jpg
+¦       frame_6.jpg
+¦       frame_7.jpg
+¦       frame_8.jpg
+¦       frame_9.jpg
+¦       
++---frontend
+¦       Dockerfile
+¦       package.json
+¦       
++---logs
++---migrations
+¦       001_add_email_to_users.sql
+¦       
++---models
+¦       facenet_keras.h5
+¦       README.md
+¦       
++---static
+¦   ¦   favicon.ico
+¦   ¦   
+¦   +---captured_faces
+¦   ¦       1234.jpg
+¦   ¦       asdf.jpg
+¦   ¦       burkul.jpg
+¦   ¦       Murkute.jpg
+¦   ¦       nana.jpg
+¦   ¦       naru.jpg
+¦   ¦       nasa.jpg
+¦   ¦       pavan123.jpg
+¦   ¦       prakash.jpg
+¦   ¦       pravin.jpg
+¦   ¦       rabani.jpg
+¦   ¦       raj.jpg
+¦   ¦       raja.jpg
+¦   ¦       rajaram.jpg
+¦   ¦       Ram.jpg
+¦   ¦       ramu.jpg
+¦   ¦       rana.jpg
+¦   ¦       rasa.jpg
+¦   ¦       sahil.jpg
+¦   ¦       sasa.jpg
+¦   ¦       Sham.jpg
+¦   ¦       shamrav.jpg
+¦   ¦       sign.jpg
+¦   ¦       studypoint.jpg
+¦   ¦       testuser.jpg
+¦   ¦       zxcv.jpg
+¦   ¦       
+¦   +---css
+¦   ¦       dashboard.css
+¦   ¦       delete.css
+¦   ¦       forget.css
+¦   ¦       home.css
+¦   ¦       login.css
+¦   ¦       logout.css
+¦   ¦       register.css
+¦   ¦       settings.css
+¦   ¦       style.css
+¦   ¦       userprofile.css
+¦   ¦       
+¦   +---images
+¦   ¦       bg1.png
+¦   ¦       bg4.jpeg.jpg
+¦   ¦       home1.jpg
+¦   ¦       logo.png
+¦   ¦       
+¦   +---js
+¦           auth.js
+¦           check_face_detection.js
+¦           home.js
+¦           logs.js
+¦           register.js
+¦           socketio_client.js
+¦           video_feed.js
+¦           your_script.js
+¦           
++---templates
+¦       check_face.html
+¦       dashboard.html
+¦       delete.html
+¦       delete_user.html
+¦       forget.html
+¦       home.html
+¦       index.html
+¦       login.html
+¦       logout.html
+¦       monitoring.html
+¦       register.html
+¦       settings.html
+¦       some_template.html
+¦       userprofile.html
+¦       user_logs.html
+¦       verify_otp.html
+¦       voice.html
+¦       your_template.html
+¦       
++---__pycache__
+        auth.cpython-311.pyc
+        config.cpython-311.pyc
+        

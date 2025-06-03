@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="/static/css/settings.css">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <aside class="sidebar">
+            <h2>⚙ Settings</h2>
+            <ul>
+                <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+                <li><a href="{{ url_for('user_logs') }}">📜 User Logs</a></li>
+                <li><a href="{{ url_for('settings') }}" class="active">⚙ Settings</a></li>
+                <li><a href="{{ url_for('logout') }}">🚪 Logout</a></li>
+                <li><a href="{{ url_for('delete_user_account') }}">🗑 Delete Account</a></li>
+
+            </ul>
+        </aside>
+
+        <main class="settings-content">
+            <h1 class="page-title">User Settings</h1>
+
+            <section class="profile-settings animated-section">
+                <h2>👤 Profile Settings</h2>
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+
+                <button class="save-btn">💾 Save Changes</button>
+            </section>
+
+            <section class="password-settings animated-section">
+                <h2>🔒 Change Password</h2>
+                <div class="input-group">
+                    <label for="current-password">Current Password:</label>
+                    <input type="password" id="current-password" placeholder="Enter current password">
+                </div>
+
+                <div class="input-group">
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" placeholder="Enter new password">
+                </div>
+
+                <button class="save-btn">🔄 Update Password</button>
+            </section>
+        </main>
+    </div>
+    {% endblock %}
+</body>
+</html>

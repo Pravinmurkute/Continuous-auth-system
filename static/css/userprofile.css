@@ -1,0 +1,208 @@
+/* logs.css */
+
+/* Reset & General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    background-color: #f5f7fa; /* very light gray-blue */
+    color: #333;
+  }
+  
+  /* Container */
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100%;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s;
+  }
+  .sidebar:hover {
+    background-color: #f9f9f9;
+  }
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .sidebar-logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  .sidebar-logo span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #007BFF;
+  }
+  .sidebar ul {
+    list-style: none;
+  }
+  .sidebar ul li {
+    margin: 15px 0;
+  }
+  .sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .sidebar ul li a i {
+    margin-right: 10px;
+  }
+  .sidebar ul li a:hover {
+    background-color: #6dbbd3;
+    color: #fff;
+  }
+  
+  /* Main Profile Content */
+  .profile-content {
+    flex: 1;
+    margin-left: 270px;  /* Space for sidebar */
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-card {
+    background-color: #ffffff;
+    width: 900px;  /* Spacious container */
+    max-width: 900px;
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .profile-card:hover {
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Header */
+  .profile-header {
+    margin-bottom: 30px;
+  }
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #007BFF;
+  }
+  .profile-header h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  .profile-header p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  
+  /* Profile Table */
+  .profile-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  .profile-table th, 
+  .profile-table td {
+    padding: 10px;
+    text-align: left;
+  }
+  .profile-table th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+  }
+  .profile-table td {
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+  }
+  
+  /* Edit Profile Section */
+  .edit-section {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+  }
+  .edit-section h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+  }
+  .edit-section label {
+    display: block;
+    font-size: 14px;
+    margin-top: 8px;
+    color: #444;
+  }
+  .edit-section input,
+  .edit-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+    font-size: 1rem;
+    color: #333;
+  }
+  .edit-section textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  
+  /* Button Group */
+  .button-group {
+    margin-top: 20px;
+  }
+  .edit-btn, .save-btn, .cancel-btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  .edit-btn {
+    background-color: #ffcc00;
+    color: #333;
+  }
+  .edit-btn:hover {
+    background-color: #e6b800;
+  }
+  .save-btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  .save-btn:hover {
+    background-color: #218838;
+  }
+  .cancel-btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  .cancel-btn:hover {
+    background-color: #c82333;
+  }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Continuous Auth System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"> {# Use url_for #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="auth-container">
+        <img src="{{ url_for('static', filename='images/bg1.png') }}" alt="Logo" class="logo" />
+        <h1>Sign In</h1>
+        {# Social links can stay if desired #}
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+
+        {# Display flash messages #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {# Use standard alert classes potentially styled by login.css #}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Login Form -->
+        {# Standard form submission - novalidate removed to allow browser validation #}
+        <form id="loginForm" action="{{ url_for('login') }}" method="POST">
+            {# CORRECT CSRF TOKEN RENDERING for standard submission #}
+            {{ form.hidden_tag() }}
+
+            {# Use WTForms rendering #}
+            <div class="form-field">
+                {{ form.email(placeholder="Your Email Address", required=True, class_="input-field", type="email", autocomplete="email") }} {# Added autocomplete #}
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <span class="error-message" style="color: red; font-size: 0.8em;">[{{ error }}]</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-field">
+                {{ form.password(placeholder="Password", required=True, class_="input-field", autocomplete="current-password") }} {# Added autocomplete #}
+                 {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <span class="error-message" style="color: red; font-size: 0.8em;">[{{ error }}]</span>
+                    {% endfor %}
+                 {% endif %}
+            </div>
+
+             <a href="#" class="forgot-link">Forgot your password?</a> {# Placeholder link #}
+
+            {# Use WTForms submit; value attribute overrides button text #}
+            {{ form.submit(class="btn", value="Sign In") }}
+        </form>
+
+        <div class="redirect">
+            <span>Don't have an account?</span>
+            <a href="{{ url_for('register') }}">Register here</a>
+       </div>
+    </div>
+
+    {# --- SCRIPT BLOCK REMOVED --- #}
+    {# No JavaScript needed for standard form submission #}
+
+</body>
+</html>

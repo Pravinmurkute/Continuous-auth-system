@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <link rel="stylesheet" href="/static/css/delete.css">
+</head>
+<body>
+    <div class="container">
+        <div class="delete-box">
+            <div class="warning-icon">⚠</div>
+            <h2>Delete Account</h2>
+            <p>Are you sure you want to <span class="highlight">permanently delete</span> your account? This action <strong>cannot</strong> be undone.</p>
+
+            <div>
+                <form method="POST">
+                    <button type="submit">Yes, Delete My Account</button>
+                </form>
+                <a href="{{ url_for('dashboard') }}">No, Keep My Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        function cancelDelete() {
+    alert("Account deletion canceled.");
+    window.location.href = "settings.html"; // Redirect to settings
+}
+
+function confirmDelete() {
+    let confirmation = confirm("Are you sure you want to delete your account?");
+    if (confirmation) {
+        alert("Your account has been deleted.");
+        window.location.href = "logout.html"; // Redirect to logout page
+    }
+}
+
+    </script>
+</body>
+</html>

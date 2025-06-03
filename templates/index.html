@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Authentication System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Face Authentication System</h1>
+    <div>
+        <h2>Authentication Status: <span id="auth-status">Unknown</span></h2>
+    </div>
+    <div>
+        <img src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+    <div>
+        <script src="{{ url_for('static', filename='js/auth_status.js') }}"></script>
+    </div>
+</body>
+</html>

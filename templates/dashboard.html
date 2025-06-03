@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ADDED CSRF Meta Tag -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Monitoring Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}"> {# Use url_for #}
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo" class="logo">
+        </div>
+        <h1>Face Authentication </h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('userprofile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        {% include 'sidebar.html' %}
+        <!-- Main Content -->
+        <div class="main-content">
+            {# Base template inclusion might happen outside this specific file if structure differs #}
+            {# {% extends "base.html" %} #}
+            {# {% block content %} #}
+
+            {# Display Welcome Message - Uses full_name now #}
+            <h1>Welcome, {{ full_name }}!</h1>
+            <p>Show your face to the camera for continuous authentication monitoring.</p>
+
+            <!-- Camera Feed Box -->
+            <div class="camera-box">
+                <img id="camera-feed" src="{{ url_for('video_feed') }}" alt="Camera Feed">
+            </div>
+
+            <!-- Authentication Status -->
+            <div class="status-box">
+                <h3>Authentication Status: <span id="auth-status">Waiting...</span></h3>
+            </div>
+
+            {# {% endblock %} #}
+        </div>
+    </div>
+
+    {# JavaScript #}
+    <script>
+        // Function to poll for face authentication status
+        function checkContinuousAuthStatus() {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            fetch("{{ url_for('check_face_authentication') }}", {
+                method: 'POST',
+                headers: {
+                    // Although no body is sent, CSRF token is needed for POST protection
+                    'X-CSRFToken': csrfToken,
+                    'Accept': 'application/json' // Indicate we expect JSON back
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error(`Auth check failed with status: ${response.status}`);
+                    document.getElementById('auth-status').textContent = 'Error';
+                    document.getElementById('auth-status').className = 'status-error';
+                    if (response.status === 401) { // Unauthorized
+                        flashMessage("Session expired. Redirecting to login...", "warning"); // Use flash message function
+                        setTimeout(() => { window.location.href = "{{ url_for('login') }}"; }, 3000); // Redirect after delay
+                    } else if (response.status === 404) { // Face enrollment not found
+                         document.getElementById('auth-status').textContent = 'Authenticated';
+                         document.getElementById('auth-status').className = 'status-warning'; // Different style?
+                    }
+                    return null;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data) {
+                    const statusElement = document.getElementById('auth-status');
+                    if (data.authenticated) {
+                        statusElement.textContent = 'Authenticated';
+                        statusElement.className = 'status-ok';
+                    } else {
+                        // Use the message from the backend if available (e.g., "No face detected")
+                        statusElement.textContent = data.message || 'Authenticated';
+                        statusElement.className = 'status-fail';
+                        // Optional: Trigger logout on persistent failure? (Handled by monitor threads/checks mostly)
+                    }
+                }
+            })
+            .catch(error => {
+                 console.error('Error fetching auth status:', error);
+                 const statusElement = document.getElementById('auth-status');
+                 statusElement.textContent = 'Network Error';
+                 statusElement.className = 'status-error';
+            });
+        }
+
+        // --- NEW: Function to display flash-like messages ---
+        function flashMessage(message, type = 'info') {
+             const messageDiv = document.getElementById('monitor-status-message');
+             if (messageDiv) {
+                 messageDiv.textContent = message;
+                 // Map type to CSS class (adjust classes as needed in dashboard.css)
+                 let alertClass = 'alert-info'; // Default
+                 if (type === 'success') alertClass = 'alert-success';
+                 else if (type === 'warning') alertClass = 'alert-warning';
+                 else if (type === 'danger' || type === 'error') alertClass = 'alert-danger';
+                 messageDiv.className = `alert ${alertClass}`; // Set classes
+                 messageDiv.style.display = 'block';
+                 // Hide after 5 seconds
+                 setTimeout(() => { messageDiv.style.display = 'none'; }, 5000);
+             } else {
+                 // Fallback if the specific div isn't found
+                 alert(`${type.toUpperCase()}: ${message}`);
+             }
+         }
+
+
+        // --- NEW: Function to load monitored websites ---
+        async function loadMonitoredSites() {
+            const listDiv = document.getElementById('monitored-sites-list');
+            listDiv.innerHTML = '<p>Loading monitored sites...</p>'; // Show loading message
+
+            try {
+                const response = await fetch("{{ url_for('get_monitored_urls') }}");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const sites = await response.json();
+
+                listDiv.innerHTML = ''; // Clear loading message
+
+                if (sites.length === 0) {
+                    listDiv.innerHTML = '<p>You are not currently monitoring any websites.</p>';
+                } else {
+                    const ul = document.createElement('ul');
+                    ul.className = 'monitored-sites'; // Add a class for styling
+                    sites.forEach(site => {
+                        const li = document.createElement('li');
+                        const statusClass = site.status ? site.status.toLowerCase() : 'unknown';
+                        const lastChecked = site.last_checked ? new Date(site.last_checked).toLocaleString() : 'Never';
+                        li.innerHTML = `
+                            <span class="site-url">${site.url}</span> -
+                            <span class="site-status status-${statusClass}">${site.status || 'N/A'}</span>
+                            (Alerts: ${site.alert_count || 0}, Last Checked: ${lastChecked})
+                            
+                        `;
+                        // Optional: Add delete/pause buttons here later
+                        ul.appendChild(li);
+                    });
+                    listDiv.appendChild(ul);
+                }
+            } catch (error) {
+                console.error("Error loading monitored sites:", error);
+                listDiv.innerHTML = '<p style="color: red;">Could not load monitored sites. Please try again later.</p>';
+            }
+        }
+
+
+        // --- Event Listener Execution ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial calls on page load
+            checkContinuousAuthStatus();
+            loadMonitoredSites(); // Load sites when page loads
+
+            // Set interval for continuous auth check
+            setInterval(checkContinuousAuthStatus, 5000); // Check every 5 seconds
+
+            // Website Monitoring Form Handling
+            const startBtn = document.getElementById('start-monitor-btn');
+            const urlInput = document.getElementById('monitor-url');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Get CSRF token
+
+            if (startBtn && urlInput) {
+                startBtn.addEventListener('click', async function() {
+                    const urlToMonitor = urlInput.value.trim();
+
+                    // Use browser's built-in validation first by checking form validity
+                    if (!urlInput.form.checkValidity()) {
+                        // Optionally trigger browser's default validation UI
+                        urlInput.form.reportValidity();
+                        return;
+                    }
+
+                    // Additional check (redundant if type="url" works well)
+                    if (!urlToMonitor.toLowerCase().startsWith('http://') && !urlToMonitor.toLowerCase().startsWith('https://')) {
+                        flashMessage('URL must start with http:// or https://', 'warning');
+                        return;
+                    }
+
+                    flashMessage('Starting...', 'info'); // Use flash message
+                    startBtn.disabled = true;
+                    startBtn.textContent = 'Starting...';
+
+                    try {
+                        const response = await fetch("{{ url_for('manage_monitoring_page') }}", { // Use url_for
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRFToken': csrfToken // Send CSRF token
+                            },
+                            body: JSON.stringify({ url: urlToMonitor })
+                        });
+
+                        const data = await response.json();
+
+                        // Use flashMessage for feedback
+                        flashMessage(data.message || `Request processed with status: ${response.status}`, data.status || (response.ok ? 'success' : 'error'));
+
+                        if (response.ok && data.status === 'success') {
+                            urlInput.value = ''; // Clear input on success
+                            loadMonitoredSites(); // Reload the list after adding
+                        }
+
+                    } catch (error) {
+                        console.error('Error starting monitoring:', error);
+                        flashMessage('An unexpected error occurred while starting monitoring.', 'error');
+                    } finally {
+                        startBtn.disabled = false;
+                        startBtn.textContent = 'Start Monitoring';
+                    }
+                });
+            } else {
+                 console.warn("Monitoring form elements not found.");
+            }
+        });
+    </script>
+</body>
+</html>

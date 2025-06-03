@@ -1,0 +1,35 @@
+<!-- ...existing code... -->
+<div id="countdown-container" style="display: none; text-align: center;">
+    <h2>Face Not Detected</h2>
+    <p>You will be logged out in <span id="countdown">30</span> seconds.</p>
+</div>
+<!-- ...existing code... -->
+<script>
+    let countdownValue = 30;
+    const countdownElement = document.getElementById('countdown');
+    const countdownContainer = document.getElementById('countdown-container');
+
+    function startCountdown() {
+        countdownContainer.style.display = 'block';
+        const countdownInterval = setInterval(() => {
+            countdownValue--;
+            countdownElement.textContent = countdownValue;
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                // Add your logout logic here
+                alert('You have been logged out.');
+            }
+        }, 1000);
+    }
+
+    function resetCountdown() {
+        countdownContainer.style.display = 'none';
+        countdownValue = 30;
+        countdownElement.textContent = countdownValue;
+    }
+
+    // Example usage:
+    // Call startCountdown() when face is not detected
+    // Call resetCountdown() when face is detected again
+</script>
+<!-- ...existing code... -->

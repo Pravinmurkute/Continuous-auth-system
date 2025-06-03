@@ -1,0 +1,155 @@
+/* login.css */
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Use a soft, subtle gradient for a modern, airy feel */
+    /* background: linear-gradient(135deg, #f5f7fa, #c3cfe2); */
+    background: linear-gradient(135deg, #ebecee, #e1f4f4);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .auth-container {
+    /* Semi-translucent white for a lightweight effect */
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 1000px; /* Using 900px as requested */
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .auth-container:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo */
+  .auth-container .logo {
+    width: 200px;
+    height: 170px;
+    margin-bottom: 20px;
+  }
+  
+  /* Headings */
+  .auth-container h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #333;
+    letter-spacing: 1px;
+  }
+  
+  /* Social Container */
+  .social-container {
+    margin-bottom: 20px;
+  }
+  
+  .social-container a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #007BFF;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-container a:hover {
+    color: #0056b3;
+  }
+  
+  /* Subtitle Text */
+  .auth-container span {
+    display: block;
+    margin-bottom: 20px;
+    color: #777;
+    font-size: 1rem;
+  }
+  
+  /* Form Styles */
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .auth-container form h3 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #444;
+    font-weight: 500;
+  }
+  
+  .auth-container input {
+    padding: 14px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .auth-container input:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  /* Forgot Password Link */
+  .forgot-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-link:hover {
+    color: #0056b3;
+  }
+  
+  /* Button Styles */
+  .btn {
+    /* padding: 10px 14px;      Smaller padding for a compact size */
+    background-color: #007BFF;
+    padding: 15px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;       /* Slightly smaller font size */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: block;         /* Make it block-level to use margin auto for centering */
+    width: fit-content;     /* Adjust width to content */
+    margin: 0 auto;         /* Center horizontally */
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  
+  /* Redirect Links */
+  .redirect {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .redirect a {
+    color: #007BFF;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .redirect a:hover {
+    color: #0056b3;
+  }
